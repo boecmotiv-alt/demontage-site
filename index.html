@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мир Тимошенко — Демонтажные работы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* === ПЕРЕМЕННЫЕ ИЗ GLOBALS.CSS === */
+    :root {
+      --background: oklch(0.16 0.005 60);
+      --foreground: oklch(0.95 0.005 80);
+      --primary: oklch(0.78 0.13 85);
+      --primary-foreground: oklch(0.16 0.005 60);
+      --muted-foreground: oklch(0.65 0.01 70);
+      --border: oklch(0.3 0.006 60);
+      --card: oklch(0.19 0.006 60);
+      --font-sans: 'Inter', sans-serif;
+      --font-serif: 'Oswald', sans-serif;
+    }
+
+    /* === БАЗОВЫЕ СТИЛИ === */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    @media (min-width: 768px) { .container { padding: 0 40px; } }
+
+    h1, h2, h3 { font-family: var(--font-serif); font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; }
+    .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.35em; color: var(--primary); margin-bottom: 1rem; display: block; }
+    h2 { font-size: 2.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+    @media (min-width: 768px) { h2 { font-size: 3rem; } }
+
+    /* === HEADER === */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(26, 25, 23, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid color-mix(in oklch, var(--border) 40%, transparent); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-family: var(--font-serif); font-size: 1.125rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem; }
+    .logo span { font-size: 0.75rem; letter-spacing: 0.3em; color: var(--primary); }
+    .nav { display: none; gap: 2.5rem; align-items: center; }
+    @media (min-width: 768px) { .nav { display: flex; } }
+    .nav a { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--muted-foreground); transition: color 0.3s; }
+    .nav a:hover { color: var(--primary); }
+    .header-btn { display: none; border: 1px solid var(--primary); padding: 0.5rem 1.25rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--primary); transition: all 0.3s; }
+    .header-btn:hover { background: var(--primary); color: var(--primary-foreground); }
+    @media (min-width: 768px) { .header-btn { display: inline-block; } }
+    .mobile-toggle { display: flex; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; }
+    @media (min-width: 768px) { .mobile-toggle { display: none; } }
+    .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--foreground); }
+    .mobile-menu { display: none; flex-direction: column; gap: 1rem; padding: 1.5rem 0; border-top: 1px solid color-mix(in oklch, var(--border) 40%, transparent); }
+    .mobile-menu.active { display: flex; }
+
+    /* === HERO === */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--background) 0%, color-mix(in oklch, var(--background) 85%, transparent) 50%, color-mix(in oklch, var(--background) 40%, transparent) 100%), linear-gradient(to top, var(--background) 0%, transparent 50%, color-mix(in oklch, var(--background) 60%, transparent) 100%); }
+    .hero-content { position: relative; padding-top: 8rem; padding-bottom: 5rem; max-width: 640px; }
+    .hero h1 { font-size: 3rem; line-height: 0.95; margin-bottom: 2rem; }
+    @media (min-width: 640px) { .hero h1 { font-size: 3.75rem; } }
+    @media (min-width: 768px) { .hero h1 { font-size: 4.5rem; } }
+    .hero h1 span { color: var(--primary); }
+    .hero p { font-size: 1.125rem; color: var(--muted-foreground); max-width: 560px; margin-bottom: 2.5rem; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn { display: inline-block; padding: 1rem 2rem; font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; transition: opacity 0.3s; cursor: pointer; }
+    .btn:hover { opacity: 0.9; }
+    .btn-primary { background: var(--primary); color: var(--primary-foreground); border: none; }
+    .btn-ghost { color: var(--foreground); }
+    .btn-ghost:hover { color: var(--primary); }
+    .hero-tag { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--muted-foreground); }
+
+    /* === SECTIONS COMMON === */
+    .section { border-top: 1px solid color-mix(in oklch, var(--border) 40%, transparent); padding: 6rem 0; }
+    @media (min-width: 768px) { .section { padding: 8rem 0; } }
+
+    /* === ABOUT === */
+    .about-grid { display: grid; gap: 3rem; }
+    @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+    .about-photo { position: relative; }
+    .about-photo::before { content: ''; position: absolute; top: -0.75rem; left: -0.75rem; width: 100%; height: 100%; border: 1px solid color-mix(in oklch, var(--primary) 40%, transparent); z-index: -1; }
+    .about-photo img { aspect-ratio: 4/5; width: 100%; object-fit: cover; background: var(--card); }
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; border-top: 1px solid color-mix(in oklch, var(--border) 40%, transparent); padding-top: 2rem; margin-top: 2.5rem; }
+    .stat-value { font-family: var(--font-serif); font-size: 2.5rem; font-weight: 700; color: var(--primary); line-height: 1; }
+    @media (min-width: 768px) { .stat-value { font-size: 3rem; } }
+    .stat-label { font-size: 0.75rem; color: var(--muted-foreground); margin-top: 0.5rem; line-height: 1.3; }
+
+    /* === CONTACT === */
+    .contact-grid { display: grid; gap: 3rem; }
+    @media (min-width: 768px) { .contact-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+    .contact-info a, .contact-info div { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+    .contact-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); color: var(--primary); transition: all 0.3s; flex-shrink: 0; }
+    .contact-info a:hover .contact-icon { border-color: var(--primary); }
+    .contact-info a:hover { color: var(--primary); }
+    .contact-form { border: 1px solid color-mix(in oklch, var(--primary) 30%, transparent); background: var(--card); padding: 2rem; }
+    @media (min-width: 768px) { .contact-form { padding: 2.5rem; } }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted-foreground); margin-bottom: 0.5rem; }
+    .form-input { width: 100%; background: var(--background); border: 1px solid var(--border); padding: 0.75rem 1rem; color: var(--foreground); outline: none; transition: border-color 0.3s; font-family: inherit; }
+    .form-input:focus { border-color: var(--primary); }
+    textarea.form-input { resize: none; min-height: 100px; }
+    .success-msg { display: none; text-align: center; padding: 2rem 0; }
+    .success-msg.active { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 16rem; }
+    .success-msg h3 { font-size: 1.5rem; color: var(--primary); margin-bottom: 0.75rem; }
+    .success-msg p { color: var(--muted-foreground); }
+
+    /* === TAGLINE === */
+    .tagline { border-top: 1px solid color-mix(in oklch, var(--border) 40%, transparent); background: var(--primary); padding: 3rem 0; }
+    @media (min-width: 768px) { .tagline { padding: 4rem 0; } }
+    .tagline p { font-family: var(--font-serif); font-size: 1.875rem; font-weight: 700; text-transform: uppercase; line-height: 1.1; color: var(--primary-foreground); }
+    @media (min-width: 768px) { .tagline p { font-size: 3rem; } }
+
+    /* === STRENGTHS === */
+    .strengths-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: color-mix(in oklch, var(--border) 40%, transparent); margin-top: 3.5rem; }
+    @media (min-width: 640px) { .strengths-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .strengths-grid { grid-template-columns: repeat(3, 1fr); } }
+    .strength-card { position: relative; aspect-ratio: 1 / 1; background: var(--background); display: flex; flex-direction: column; justify-content: space-between; padding: 2rem; }
+    .strength-card::before { content: ''; position: absolute; inset: 0.75rem; border: 1px solid var(--border); transition: all 0.3s; }
+    .strength-card:hover::before { border-color: var(--primary); box-shadow: 0 0 30px -8px color-mix(in oklch, var(--primary) 50%, transparent); }
+    .strength-card .lucide { width: 2rem; height: 2rem; color: var(--muted-foreground); transition: color 0.3s; }
+    .strength-card:hover .lucide { color: var(--primary); }
+    .strength-card h3 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 600; text-transform: uppercase; color: var(--foreground); transition: color 0.3s; }
+    .strength-card:hover h3 { color: var(--primary); }
+    .strength-card p { font-size: 0.875rem; color: var(--muted-foreground); margin-top: 0.75rem; }
+
+    /* === FOOTER === */
+    footer { border-top: 1px solid color-mix(in oklch, var(--border) 40%, transparent); padding: 2.5rem 0; }
+    .footer-inner { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 1rem; text-align: center; }
+    @media (min-width: 768px) { .footer-inner { flex-direction: row; text-align: left; } }
+    .footer-brand { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.25em; }
+    .footer-copy { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted-foreground); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <a href="#top" class="logo">Тимошенко <span>демонтаж</span></a>
+      <nav class="nav">
+        <a href="#about">Обо мне</a>
+        <a href="#strengths">Преимущества</a>
+        <a href="#contact">Связаться</a>
+      </nav>
+      <a href="#contact" class="header-btn">Связаться</a>
+      <button class="mobile-toggle" aria-label="Меню" onclick="document.querySelector('.mobile-menu').classList.toggle('active')">
+        <span></span><span></span>
+      </button>
+    </div>
+    <div class="container mobile-menu">
+      <a href="#about" onclick="this.parentElement.classList.remove('active')">Обо мне</a>
+      <a href="#strengths" onclick="this.parentElement.classList.remove('active')">Преимущества</a>
+      <a href="#contact" onclick="this.parentElement.classList.remove('active')">Связаться</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" class="hero">
+    <div class="hero-bg">
+      <!-- Замени путь на свою картинку -->
+      <img src="/hero-demolition.png" alt="Демонтаж интерьера в полумраке">
+    </div>
+    <div class="container hero-content">
+      <span class="label" style="border-left: 2px solid var(--primary); padding-left: 1rem;">Демонтажные работы</span>
+      <h1>Сносим стены. <span>Оставляем порядок.</span></h1>
+      <p>Надёжный, быстрый и аккуратный демонтаж любой сложности. Работаю чисто, соблюдаю сроки и берусь за объёмные задачи без лишнего шума.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary">Связаться</a>
+        <a href="#strengths" class="btn btn-ghost">Почему я</a>
+      </div>
+    </div>
+    <div class="hero-tag">Чётко · Надёжно · В срок</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container about-grid">
+      <div class="about-photo">
+        <!-- Замени путь на своё фото -->
+        <img src="/portrait.png" alt="Мир Станиславович Тимошенко">
+      </div>
+      <div>
+        <span class="label">Обо мне</span>
+        <h2>Мир Станиславович<br>Тимошенко</h2>
+        <p style="color: var(--muted-foreground); max-width: 500px;">Специалист по демонтажу, которому можно доверять. Подхожу к каждому объекту серьёзно: от точного расчёта до чистой уборки после работ. Соблюдаю договорённости и берусь за задачи любой сложности.</p>
+        <div class="stats-grid">
+          <div><div class="stat-value">3</div><div class="stat-label">года опыта в демонтаже</div></div>
+          <div><div class="stat-value">20</div><div class="stat-label">демонтированных квартир</div></div>
+          <div><div class="stat-value">50+</div><div class="stat-label">мелких демонтажных работ</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container contact-grid">
+      <div>
+        <span class="label">Связаться</span>
+        <h2>Обсудим ваш объект</h2>
+        <p style="color: var(--muted-foreground); max-width: 500px;">Оставьте контакты — перезвоню, оценю объём работ и назову точный срок. Демонтаж без лишнего шума.</p>
+        <div class="contact-info" style="margin-top: 2.5rem;">
+          <a href="tel:+70000000000">
+            <div class="contact-icon"><i data-lucide="phone"></i></div>
+            <span>+7 (000) 000-00-00</span>
+          </a>
+          <a href="mailto:info@timoshenko-demolition.ru">
+            <div class="contact-icon"><i data-lucide="mail"></i></div>
+            <span>info@timoshenko-demolition.ru</span>
+          </a>
+          <div>
+            <div class="contact-icon"><i data-lucide="map-pin"></i></div>
+            <span style="color: var(--muted-foreground);">Москва и область</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form id="demoForm">
+          <div class="form-group">
+            <label for="name">Имя</label>
+            <input type="text" id="name" class="form-input" placeholder="Как к вам обращаться" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" class="form-input" placeholder="+7 (___) ___-__-__" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Описание работ</label>
+            <textarea id="message" class="form-input" placeholder="Что нужно демонтировать"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Отправить заявку</button>
+        </form>
+        <div class="success-msg" id="successMsg">
+          <h3>Заявка принята</h3>
+          <p>Спасибо! Свяжусь с вами в ближайшее время.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAGLINE -->
+  <section class="tagline">
+    <div class="container">
+      <p>Демонтаж без лишнего шума.<br>Чётко. Надёжно. В срок.</p>
+    </div>
+  </section>
+
+  <!-- STRENGTHS -->
+  <section id="strengths" class="section" style="border-top: none;">
+    <div class="container">
+      <span class="label">Сильные стороны</span>
+      <h2>Почему мне доверяют</h2>
+      <div class="strengths-grid">
+        <div class="strength-card"><i data-lucide="check-circle-2"></i><div><h3>Аккуратность</h3><p>Работаю чисто и с вниманием к деталям.</p></div></div>
+        <div class="strength-card"><i data-lucide="zap"></i><div><h3>Скорость</h3><p>Выполняю задачи в оговоренные сроки.</p></div></div>
+        <div class="strength-card"><i data-lucide="hammer"></i><div><h3>Опыт</h3><p>3 года практики в демонтаже.</p></div></div>
+        <div class="strength-card"><i data-lucide="shield-check"></i><div><h3>Надёжность</h3><p>Соблюдаю договорённости и сроки.</p></div></div>
+        <div class="strength-card"><i data-lucide="dumbbell"></i><div><h3>Выносливость</h3><p>Готов к тяжёлым и объёмным работам.</p></div></div>
+        <div class="strength-card"><i data-lucide="award"></i><div><h3>Ответственность</h3><p>Подхожу к работе серьёзно и профессионально.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <span class="footer-brand">Тимошенко · Демонтаж</span>
+      <span class="footer-copy">© 2026 Мир Станиславович Тимошенко</span>
+    </div>
+  </footer>
+
+  <script>
+    // Инициализация иконок Lucide
+    lucide.createIcons();
+
+    // Обработка формы (имитация)
+    document.getElementById('demoForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.getElementById('successMsg').classList.add('active');
+    });
+  </script>
+</body>
+</html>
