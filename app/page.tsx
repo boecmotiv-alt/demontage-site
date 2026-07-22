@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ContactForm } from '@/components/contact-form'
 import { Icon } from '@/components/icon'
@@ -67,8 +68,14 @@ export default function HomePage() {
       <section id="about" className="section">
         <div className="container about-grid">
           <div className="about-photo">
-            {/* TODO: добавить фото в /public/portrait.jpg и заменить заглушку на <img> */}
-            <div className="photo-placeholder">Фото</div>
+            <Image
+              src="/portrait.webp"
+              alt="Мир Тимошенко — демонтажные работы в Сочи"
+              width={1200}
+              height={1500}
+              sizes="(max-width: 768px) 100vw, 560px"
+              priority
+            />
           </div>
           <div>
             <span className="label">Обо мне</span>

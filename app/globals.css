@@ -327,6 +327,7 @@ header {
 .about-photo img {
   aspect-ratio: 4/5;
   width: 100%;
+  height: auto;
   object-fit: cover;
   background: var(--card);
 }
