@@ -307,8 +307,10 @@ header {
 }
 @media (min-width: 768px) {
   .about-grid {
-    grid-template-columns: 1fr 1fr;
+    /* фото ~30% уже, чем при 1fr 1fr — текст получает больше места */
+    grid-template-columns: 0.55fr 1fr;
     gap: 4rem;
+    align-items: start;
   }
 }
 .about-photo {

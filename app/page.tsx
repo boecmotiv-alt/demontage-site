@@ -38,32 +38,6 @@ export default function HomePage() {
         <div className="hero-tag">{site.tagline}</div>
       </section>
 
-      {/* УСЛУГИ */}
-      <section id="services" className="section">
-        <div className="container">
-          <span className="label">Услуги</span>
-          <h2>Что я делаю</h2>
-          <p className="muted">
-            Полный цикл: от сноса перегородки до вывезенного мусора и подметённого
-            подъезда.
-          </p>
-          <div className="services-grid" style={{ marginTop: '3rem' }}>
-            {services.map((service) => (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
-                className="service-card"
-              >
-                <Icon name={service.icon} />
-                <h3>{service.title}</h3>
-                <p>{service.short}</p>
-                <span className="more">Подробнее →</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ОБО МНЕ */}
       <section id="about" className="section">
         <div className="container about-grid">
@@ -73,7 +47,7 @@ export default function HomePage() {
               alt="Мир Тимошенко — демонтажные работы в Сочи"
               width={1200}
               height={1500}
-              sizes="(max-width: 768px) 100vw, 560px"
+              sizes="(max-width: 768px) 100vw, 400px"
               priority
             />
           </div>
@@ -97,6 +71,32 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* УСЛУГИ */}
+      <section id="services" className="section">
+        <div className="container">
+          <span className="label">Услуги</span>
+          <h2>Что я делаю</h2>
+          <p className="muted">
+            Полный цикл: от сноса перегородки до вывезенного мусора и подметённого
+            подъезда.
+          </p>
+          <div className="services-grid" style={{ marginTop: '3rem' }}>
+            {services.map((service) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="service-card"
+              >
+                <Icon name={service.icon} />
+                <h3>{service.title}</h3>
+                <p>{service.short}</p>
+                <span className="more">Подробнее →</span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
