@@ -4,13 +4,10 @@ export const site = {
   brand: 'Тимошенко',
   brandAccent: 'демонтаж',
   owner: 'Мир Станиславович Тимошенко',
-  // TODO: заменить на реальный номер
-  phone: '+7 (000) 000-00-00',
-  phoneHref: 'tel:+70000000000',
-  // TODO: заменить на реальную почту
-  email: 'info@timoshenko-demolition.ru',
-  // TODO: подтвердить регион работы
-  area: 'Москва и область',
+  phone: '+7 (900) 298-36-01',
+  phoneHref: 'tel:+79002983601',
+  email: 'mirtimosenko@gmail.com',
+  area: 'Сочи',
   // TODO: заменить на реальный домен после покупки
   url: 'https://timoshenko-demolition.ru',
   tagline: 'Чётко · Надёжно · В срок',
