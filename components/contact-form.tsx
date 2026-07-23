@@ -95,6 +95,11 @@ export function ContactForm({ service }: { service?: string }) {
         >
           {sending ? 'Отправляю…' : 'Отправить заявку'}
         </button>
+
+        <p className="form-consent">
+          Нажимая кнопку, вы соглашаетесь с{' '}
+          <a href="/privacy">политикой обработки персональных данных</a>.
+        </p>
       </form>
     </div>
   )

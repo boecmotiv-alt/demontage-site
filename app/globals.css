@@ -450,6 +450,22 @@ textarea.form-input {
   resize: none;
   min-height: 100px;
 }
+.form-consent {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--muted-foreground);
+}
+.form-consent a {
+  color: var(--muted-foreground);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.3s;
+}
+.form-consent a:hover {
+  color: var(--primary);
+}
 .success-msg {
   display: flex;
   flex-direction: column;
@@ -789,6 +805,60 @@ textarea.form-input {
   color: var(--primary);
 }
 
+/* === ЮРИДИЧЕСКИЕ СТРАНИЦЫ === */
+.legal {
+  max-width: 780px;
+  padding-bottom: 6rem;
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+}
+.legal .legal-date {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted-foreground);
+  margin-bottom: 2.5rem;
+  display: block;
+}
+.legal h2 {
+  font-size: 1.35rem;
+  margin: 2.5rem 0 1rem;
+  color: var(--foreground);
+}
+.legal h2:first-of-type {
+  margin-top: 0;
+}
+.legal p {
+  margin-bottom: 1rem;
+}
+.legal ul {
+  list-style: none;
+  margin: 0 0 1rem;
+  display: grid;
+  gap: 0.6rem;
+}
+.legal li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+.legal li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: var(--primary);
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+}
+.legal strong {
+  color: var(--foreground);
+}
+.legal a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* === FOOTER === */
 footer {
   border-top: 1px solid color-mix(in oklch, var(--border) 40%, transparent);
@@ -820,4 +890,14 @@ footer {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--muted-foreground);
+}
+.footer-legal {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.3s;
+}
+.footer-legal:hover {
+  color: var(--primary);
 }
