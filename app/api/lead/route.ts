@@ -48,7 +48,12 @@ async function sendMail(lead: Lead) {
     host,
     port,
     secure: port === 465,
-    auth: { user, pass },
+    auth: { user: user.trim(), pass: pass.trim() },
+    // Без таймаутов зависший SMTP держит запрос бесконечно — форма у посетителя
+    // крутится и не отвечает. Лучше быстро упасть: заявка уже сохранена в файл.
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 15_000,
   })
 
   const when = new Date(lead.createdAt).toLocaleString('ru-RU', {
@@ -130,13 +135,11 @@ export async function POST(request: Request) {
     console.error('[lead] не удалось сохранить заявку в файл:', error)
   }
 
-  // Затем пробуем отправить письмо. Если почта отвалилась — заявка всё равно
-  // не потеряна, и клиенту не показываем ошибку.
-  try {
-    await sendMail(lead)
-  } catch (error) {
+  // Письмо отправляем БЕЗ ожидания: заявка уже в файле, а SMTP бывает медленным.
+  // Иначе посетитель смотрит на крутилку, пока почта раздумывает, и уходит.
+  sendMail(lead).catch((error) => {
     console.error('[lead] не удалось отправить письмо:', error)
-  }
+  })
 
   return NextResponse.json({ ok: true })
 }
