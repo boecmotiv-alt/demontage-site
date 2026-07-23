@@ -8,8 +8,7 @@ export const site = {
   phoneHref: 'tel:+79002983601',
   email: 'mirtimosenko@gmail.com',
   area: 'Сочи',
-  // TODO: заменить на реальный домен после покупки
-  url: 'https://timoshenko-demolition.ru',
+  url: 'https://mir-stroy-remont.ru',
   tagline: 'Чётко · Надёжно · В срок',
 }
 
